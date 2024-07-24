@@ -1,0 +1,133 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #00379c;
+    color: white;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.header nav {
+    display: flex;
+    gap: 60px;
+}
+
+.header nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.header nav a:hover {
+    color: #baebff;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%; 
+    max-width: 800px; 
+    margin-top: 80px; 
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form h2 {
+    font-size: 24px;
+    color: #00379c;
+    margin-bottom: 20px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form textarea {
+    resize: vertical;
+}
+
+.form button {
+    background-color: #00379c;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.form button:hover {
+    background-color: #002a73;
+}
+
+.form p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form p a {
+    color: #00379c;
+    text-decoration: none;
+}
+
+.form p a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #00379c;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
