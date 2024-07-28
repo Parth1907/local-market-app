@@ -6,10 +6,10 @@ import {
 	CardBody,
 	CardFooter,
 	Typography,
+	Button,
 } from "@material-tailwind/react";
 import {FaLocationDot, FaMapLocationDot} from "react-icons/fa6";
 import {BiSolidCategoryAlt} from "react-icons/bi";
-import Footer from "../ui/footer";
 // import shopImg from "./public/pexels-pixabay-264636.jpg";
 
 export default function Shops() {
@@ -65,35 +65,39 @@ export default function Shops() {
 		},
 	];
 	return (
-		<div className="">
-		<div>
+		<div className="mx-4">
 			<h1 className="text-2xl font-bold text-center mb-6">Shops</h1>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
+			<Button className="mb-4">
+				<a href="/shops/create">Create Shop</a>
+			</Button>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
 				{shopSampleData.map((shop, index) => (
-					<Card className="flex-row border-2" key={index}>
-						<CardHeader className="bg-gray-500 mb-4" floated={false}>
-							<img src="" alt="Store Image" className="object-contain" />
-						</CardHeader>
-						<CardBody className="">
-							<Typography className="font-bold text-lg">{shop.name}</Typography>
-							<Typography className="flex items-center gap-1 text-sm font-semibold">
-								<BiSolidCategoryAlt />
-								{shop.category}
-							</Typography>
-							<Typography className="flex items-center gap-1 text-sm">
-								<FaLocationDot />
-								{shop.location}
-							</Typography>
-							<Typography className="flex items-center gap-1 text-sm">
-								<FaMapLocationDot />
-								{shop.geoLocation.coordinates}
-							</Typography>
-						</CardBody>
-					</Card>
+					<a href={`/shops/${index}`} key={index}>
+						<Card className="flex-row border-2">
+							<CardHeader className="bg-gray-500 mb-4" floated={false}>
+								<img src="" alt="Store Image" className="object-contain" />
+							</CardHeader>
+							<CardBody className="">
+								<Typography className="font-bold text-lg">
+									{shop.name}
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm font-semibold">
+									<BiSolidCategoryAlt />
+									{shop.category}
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm">
+									<FaLocationDot />
+									{shop.location}
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm">
+									<FaMapLocationDot />
+									{shop.geoLocation.coordinates}
+								</Typography>
+							</CardBody>
+						</Card>
+					</a>
 				))}
 			</div>
-		</div>
-		<Footer />
 		</div>
 	);
 }

@@ -1,12 +1,5 @@
-import React from 'react'
-import Footer from '../ui/footer'
+import React from "react";
 
 export default function Dashboard() {
-  return (
-    <div className="">
-
-    <div className=''>Dashboard</div>
-    <Footer />
-    </div>
-  )
+	return <div className="">Dashboard</div>;
 }

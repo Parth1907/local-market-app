@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/layout.jsx", "app/api/register/route.js", "app/api/login/route.js", "app/dashboard/topseller/page.jsx", "app/dashboard/page.jsx", "app/login/page.jsx", "app/profile/page.jsx", "app/register/page.jsx", "app/ui/footer.jsx", "app/ui/HomeFooter.jsx", "app/ui/sidenav.jsx", "app/ui/navbar.jsx", "app/page.jsx", "tailwind.config.js", "app/dashboard/layout.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/layout.jsx", "app/api/register/route.js", "app/api/login/route.js", "app/dashboard/topseller/page.jsx", "app/dashboard/page.jsx", "app/login/page.jsx", "app/profile/page.jsx", "app/register/page.jsx", "app/ui/footer.jsx", "app/ui/HomeFooter.jsx", "app/ui/sidenav.jsx", "app/ui/navbar.jsx", "app/page.jsx", "tailwind.config.js", "app/dashboard/layout.jsx", "app/shops/create/page.jsx", "app/shops/layout.jsx"],
   "exclude": ["node_modules"]
 }
