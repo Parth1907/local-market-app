@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -21,9 +21,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* position: fixed;
-    top: 0;
-    left: 0; */
     transition: top 0.3s;
     box-sizing: border-box;
 }
@@ -139,4 +136,4 @@ body {
 }
 .footer button:hover {
     background-color: #00313d;
-}
+} */
