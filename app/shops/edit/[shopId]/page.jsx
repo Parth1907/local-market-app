@@ -58,7 +58,11 @@ export default function EditShop() {
 	return (
 		<div className="w-full flex justify-center mt-4">
 			<Card color="transparent" shadow={false}>
-				<Typography variant="h4" color="blue-gray" className="text-center">
+				<Typography
+					variant="h4"
+					color="blue-gray"
+					className="text-center mt-8 text-blue-800"
+				>
 					Edit Shop
 				</Typography>
 				<form

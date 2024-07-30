@@ -139,7 +139,7 @@ export default function Shops() {
 
 	return (
 		<div className="mx-4">
-			<Typography variant="h3" className="text-center mb-6">
+			<Typography variant="h3" className="text-center mb-6 mt-8 text-blue-800">
 				Shops
 			</Typography>
 			{!userHasShop && (

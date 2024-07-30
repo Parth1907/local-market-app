@@ -33,7 +33,7 @@ export default function Items() {
 
 	return (
 		<div className="mx-2">
-			<Typography variant="h3" className="text-center mb-6">
+			<Typography variant="h3" className="text-center mb-6 mt-10 text-blue-800">
 				Shop Items
 			</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">

@@ -27,8 +27,8 @@ export default function Dashboard() {
 	}, []);
 
 	return (
-		<div className="mx-2">
-			<Typography variant="h3" className="text-center mb-6">
+		<div className="mx-2 flex flex-col min-h-screen bg-gray-100">
+			<Typography variant="h3" className="text-center text-blue-800 mb-6 mt-8">
 				Items
 			</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
