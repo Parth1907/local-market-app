@@ -1,59 +1,65 @@
 "use client";
 import React, {useState, useEffect} from "react";
-import {useRouter} from "next/navigation";
+import {useParams, useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
 
-export default function CreateShop() {
+export default function EditShop() {
 	const router = useRouter();
 
 	const [name, setName] = useState("");
 	const [location, setLocation] = useState("");
 	const [category, setCategory] = useState("");
 	const [coordinates, setCoordinates] = useState([0, 0]);
-	// console.log(coordinates);
+
+	const {shopId} = useParams();
 	useEffect(() => {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				(position) => {
-					const {latitude, longitude} = position.coords;
-					setCoordinates([latitude, longitude]);
-				},
-				(error) => {
-					console.error("Error obtaining location", error);
-				}
-			);
-		} else {
-			console.error("Geolocation is not supported by this browser.");
-		}
+		const fetchShopDetails = async (e) => {
+			try {
+				const response = await fetch(
+					`http://localhost:5001/api/shop/${shopId}`
+				);
+				const data = await response.json();
+				setName(data.name);
+				setLocation(data.location);
+				setCategory(data.category);
+				setCoordinates(data.geoLocation.coordinates);
+				// console.log(coordinates);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchShopDetails();
 	}, []);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch("http://localhost:5001/api/shop", {
-			method: "POST",
+		const response = await fetch(`http://localhost:5001/api/shop/${shopId}`, {
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `${scheme} ${token}`,
 			},
-			body: JSON.stringify({name, location, category, coordinates}),
+			body: JSON.stringify({name, location, category}),
 		});
 		const data = await response.json();
-		console.log(data);
-		if (response.status === 201) {
-			console.log("Shop created successfully:", data);
-			localStorage.setItem("token",data.authorization.authToken)
-            router.push("/shops");
+		if (response.status === 200) {
+			console.log("Shop edited successfully:", data);
+			router.push("/shops");
+			// Handle the successful creation, e.g., navigate to the new shop page
 		} else {
-			console.error("Failed to create shop", data);
+			// Handle other statuses or errors
+			console.error("Failed to edit shop", data);
 		}
 	};
+
 	return (
 		<div className="w-full flex justify-center mt-4">
 			<Card color="transparent" shadow={false}>
 				<Typography variant="h4" color="blue-gray" className="text-center">
-					Create Shop
+					Edit Shop
 				</Typography>
 				<form
 					className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
@@ -114,7 +120,7 @@ export default function CreateShop() {
 						/>
 					</div>
 					<Button className="mt-6" fullWidth type="submit">
-						Create Shop
+						Edit Shop
 					</Button>
 				</form>
 			</Card>

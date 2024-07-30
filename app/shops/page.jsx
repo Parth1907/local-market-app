@@ -1,15 +1,15 @@
 "use client";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
 	Card,
 	CardHeader,
 	CardBody,
-	CardFooter,
 	Typography,
 	Button,
 } from "@material-tailwind/react";
-import {FaLocationDot, FaMapLocationDot} from "react-icons/fa6";
+import {FaLocationDot, FaPencil, FaTrashCan, FaPlus} from "react-icons/fa6";
 import {BiSolidCategoryAlt} from "react-icons/bi";
+import {useRouter} from "next/navigation";
 // import shopImg from "./public/pexels-pixabay-264636.jpg";
 
 export default function Shops() {
@@ -64,16 +64,132 @@ export default function Shops() {
 			},
 		},
 	];
+
+	const router = useRouter();
+	const [shops, setShops] = useState([]);
+	const [error, setError] = useState(null);
+	const [userHasShop, setUserHasShop] = useState(false);
+	const [userShop, setUserShop] = useState([{}]);
+
+	useEffect(() => {
+		const fetchShops = async (e) => {
+			try {
+				const response = await fetch("http://localhost:5001/api/shop");
+				const data = await response.json();
+				console.log(data);
+				const userString = localStorage.getItem("user");
+				if (userString) {
+					const user = JSON.parse(userString);
+					const userShop = data.filter((shop) => shop.ownerId === user.id);
+					if (userShop.length > 0) {
+						setUserHasShop(true);
+						setUserShop(userShop[0]);
+					}
+				}
+
+				setShops(data);
+			} catch (error) {
+				setError(error.message);
+			}
+		};
+
+		fetchShops();
+	}, []);
+
+	if (error) {
+		console.log(error);
+	}
+
+	const handleDelete = async (e) => {
+		e.preventDefault();
+		const scheme = localStorage.getItem("scheme");
+		const token = localStorage.getItem("token");
+
+		try {
+			const response = await fetch(
+				`http://localhost:5001/api/shop/${userShop.id}`,
+				{
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `${scheme} ${token}`,
+					},
+				}
+			);
+
+			let data = null;
+			if (response.status !== 204) {
+				try {
+					data = await response.json();
+				} catch (error) {
+					console.error("Failed to parse JSON:", error);
+				}
+			}
+
+			if (response.ok) {
+				console.log("Shop deleted successfully:", data);
+				router.push("/shops");
+			} else {
+				console.error("Deletion failed: ", data);
+			}
+		} catch (error) {
+			console.error("Error deleting shop", error);
+		}
+	};
+
 	return (
 		<div className="mx-4">
-			<h1 className="text-2xl font-bold text-center mb-6">Shops</h1>
-			<Button className="mb-4">
-				<a href="/shops/create">Create Shop</a>
-			</Button>
+			<Typography variant="h3" className="text-center mb-6">
+				Shops
+			</Typography>
+			{!userHasShop && (
+				<Button className="mb-4">
+					<a href="/shops/create">Create Shop</a>
+				</Button>
+			)}
+			{userHasShop && (
+				<div className="">
+					<Typography variant="h5">My shop</Typography>
+					<div className="mb-4">
+						<Card className="flex-row border-2 md:w-[400px]">
+							<CardHeader className="bg-gray-500 mb-4" floated={false}>
+								<img src="" alt="Store Image" className="object-contain" />
+							</CardHeader>
+							<CardBody className="">
+								<Typography className="font-bold text-lg">
+									<a href={`/shops/${userShop.id}`}>{userShop.name}</a>
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm font-semibold">
+									<BiSolidCategoryAlt />
+									{userShop.category}
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm">
+									<FaLocationDot />
+									{userShop.location}
+								</Typography>
+								<Button className="mr-4 mt-2">
+									<a href={`/shops/edit/${userShop.id}`}>
+										<FaPencil />
+									</a>
+								</Button>
+								<Button className="mr-2 mt-2" onClick={handleDelete}>
+									<FaTrashCan />
+								</Button>
+								<Button className="mt-2">
+									<a href="/shops/create/item">
+										<FaPlus />
+									</a>
+								</Button>
+							</CardBody>
+						</Card>
+					</div>
+				</div>
+			)}
+			<Typography variant="h5">All shops</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-				{shopSampleData.map((shop, index) => (
-					<a href={`/shops/${index}`} key={index}>
-						<Card className="flex-row border-2">
+				{shops.map((shop) => (
+					<a href={`/shops/${shop.id}`} key={shop.id}>
+						<Card className="flex-row border-2 h-44">
 							<CardHeader className="bg-gray-500 mb-4" floated={false}>
 								<img src="" alt="Store Image" className="object-contain" />
 							</CardHeader>
@@ -88,10 +204,6 @@ export default function Shops() {
 								<Typography className="flex items-center gap-1 text-sm">
 									<FaLocationDot />
 									{shop.location}
-								</Typography>
-								<Typography className="flex items-center gap-1 text-sm">
-									<FaMapLocationDot />
-									{shop.geoLocation.coordinates}
 								</Typography>
 							</CardBody>
 						</Card>

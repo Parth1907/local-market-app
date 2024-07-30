@@ -25,7 +25,7 @@ export default function Register() {
 			body: JSON.stringify({name, email, password}),
 		});
 		const data = await response.json();
-		console.log(data);
+		// console.log(data);
 
 		if (response.ok) {
 			localStorage.setItem("token", data.authorization.authToken);
