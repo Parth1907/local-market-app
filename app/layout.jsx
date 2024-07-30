@@ -5,7 +5,7 @@ import Navbar from './ui/navbar'
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '700'] });
 
 export const metadata = {
-  title: "Website Name",
+  title: "TownKart",
   description: "A e-commerce place for local vendors",
 };
 
