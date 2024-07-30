@@ -32,51 +32,54 @@ export default function Login() {
 			console.error("Login failed: ", data);
 		}
 	};
+
 	return (
-		<div className="flex justify-center">
-			<div
-				className="bg-white rounded-lg p-[40px] w-full max-w-[800px] text-center"
-				style={{boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)"}}
-			>
-				<form className="flex flex-col" onSubmit={handleSubmit}>
-					<h2 className="text-[24px] text-[#00379c] mb-[20px]">Sign In</h2>
-					<div className="p-2">
-						<Input
-							type="email"
-							label="Email"
-							size="lg"
-							required
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-					</div>
-					<div className="p-2 mb-5">
-						<Input
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							label="Password"
-							required
-						/>
-					</div>
-					<button
-						type="submit"
-						className="bg-[#00379c] text-white border-none p-3 text-base cursor-pointer rounded-md transition-colors duration-300 hover:bg-[#002a73]"
-					>
-						Sign In
-					</button>
-					<p className="mt-5 text-center">
-						Don't have an account yet?
-						<a
-							href="/register"
-							className="text-[#00379c] no-underline hover:underline"
+		<div>
+			<div className="flex justify-center mt-40 flex-grow">
+				<div
+					className="bg-white rounded-lg p-[40px] w-full max-w-[800px] text-center"
+					// style={{boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)"}}
+				>
+					<form className="flex flex-col" onSubmit={handleSubmit}>
+						<h2 className="text-[24px] text-[#00379c] mb-[20px]">Sign In</h2>
+						<div className="p-2">
+							<Input
+								type="email"
+								label="Email"
+								size="lg"
+								required
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+						</div>
+						<div className="p-2 mb-5">
+							<Input
+								type="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								label="Password"
+								required
+							/>
+						</div>
+						<button
+							type="submit"
+							className="bg-[#00379c] text-white border-none p-3 text-base cursor-pointer rounded-md transition-colors duration-300 hover:bg-[#002a73]"
 						>
-							Sign Up
-						</a>
-					</p>
-				</form>
+							Sign In
+						</button>
+						<p className="mt-5 text-center">
+							Don't have an account yet?
+							<a
+								href="/register"
+								className="text-[#00379c] no-underline hover:underline"
+							>
+								Sign Up
+							</a>
+						</p>
+					</form>
+				</div>
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 }
