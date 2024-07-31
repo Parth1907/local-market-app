@@ -53,37 +53,6 @@ export default function Dashboard() {
 	}, []);
 
 	return (
-<<<<<<< HEAD
-		<div className="mx-2 flex flex-col min-h-screen bg-gray-100">
-			<Typography variant="h3" className="text-center text-blue-800 mb-6 mt-8">
-				Items
-			</Typography>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-				{items.map((item) => (
-					<Card className="flex-row border-2 h-44" key={item.id}>
-						<CardHeader className="bg-gray-500 mb-4" floated={false}>
-							<img src="" alt="Store Image" className="object-contain" />
-						</CardHeader>
-						<CardBody className="">
-							<Typography className="font-bold text-lg">{item.name}</Typography>
-							<Typography className="flex items-center gap-1 text-sm font-semibold">
-								<BiSolidCategoryAlt />
-								{item.category}
-							</Typography>
-							<Typography className="text-sm">
-								<span className="font-semibold">Price</span> : ₹
-								<span className="line-through">{item.price}</span>{" "}
-								{item.finalPrice}
-							</Typography>
-							<Typography className="text-sm">
-								<span className="font-semibold">In-stock</span> :{" "}
-								{item.quantity}
-							</Typography>
-							<AddToCartButton item={item} />
-						</CardBody>
-					</Card>
-				))}
-=======
 		<div className="min-h-screen bg-gradient-to-b from-white to-[#203c9c] flex flex-col">
 			<div className="mx-2 mt-24 flex-grow">
 				<Typography variant="h3" className="text-center text-blue-800 mb-6">
@@ -106,7 +75,7 @@ export default function Dashboard() {
 					))}
 				</div>
 				{/* Items Section */}
-				<Typography variant="h4" className="text-center text-blue-800 mb-6">
+				<Typography variant="h4" className="text-center text-white mb-6">
 					Available Items
 				</Typography>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
@@ -134,7 +103,6 @@ export default function Dashboard() {
 						</Card>
 					))}
 				</div>
->>>>>>> c8dc18723b11532e5c57cbf6c25b785a55382ef0
 			</div>
 		</div>
 	);

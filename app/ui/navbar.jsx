@@ -94,18 +94,18 @@ export default function navbar() {
 						</Menu>
 					) : (
 						<div className="flex gap-4">
-							<Link
+							<a
 								href="/register"
 								className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 							>
 								Sign Up
-							</Link>
-							<Link
+							</a>
+							<a
 								href="/login"
 								className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 							>
 								Sign In
-							</Link>
+							</a>
 						</div>
 					)}
 				</nav>
