@@ -169,7 +169,7 @@ export default function Shops() {
 									{userShop.location}
 								</Typography>
 								<Button className="mr-4 mt-2">
-									<Link href={`/shops/edit/${userShop.id}`}>
+									<Link href={`/shops/${userShop.id}/edit`}>
 										<FaPencil />
 									</Link>
 								</Button>

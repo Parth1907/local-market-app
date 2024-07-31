@@ -9,33 +9,36 @@ import {
 	Button,
 } from "@material-tailwind/react";
 import {BiSolidCategoryAlt} from "react-icons/bi";
+import Link from "next/link";
 
 export default function Dashboard() {
 	const [items, setItems] = useState([]);
 	const categories = [
-		{ name: "Electronics", image: "/electronics.png" },
-		{ name: "Footwear", image: "/footwear.png" },
-		{ name: "Fast Food", image: "/fastfood.png" },
-		{ name: "Clothing", image: "/clothing.png" },
-		{ name: "Stationery", image: "/stationery.png" },
-		{ name: "Furniture", image: "/furniture.png" },
-		{ name: "Toys", image: "/toys.png" },
-		{ name: "Groceries", image: "/groceries.png" },
-		{ name: "Home Appliances", image: "/homeappliances.png" },
-		{ name: "Sports Equipment", image: "/sports.png" },
-		{ name: "Jewelry", image: "/jewelry.png" },
-		{ name: "Beauty Products", image: "/beauty.png" },
-		{ name: "Gardening", image: "/gardening.png" },
-		{ name: "Musical Instruments", image: "/musicalinstruments.png" },
-		{ name: "Office Supplies", image: "/officesupplies.png" },
-		{ name: "Pet Supplies", image: "/petsupplies.png" },
-		{ name: "Outdoor Equipment", image: "/outdoor.png" },
-		{ name: "Kitchenware", image: "/kitchenware.png" },
-		{ name: "Health & Wellness", image: "/health.png" },
-		{ name: "Tools & Hardware", image: "/tools.png" },
-		{ name: "Travel Accessories", image: "/travel.png" },
-		{ name: "Baby Products", image: "/baby.png" },
-		{ name: "Bags & Luggage", image: "/bags.png" },
+		{name: "Electronics", image: "/electronics.png"}, 
+		{name: "Footwear", image: "/footwear.png"},
+		{name: "Fast Food", image: "/fastfood.png"},
+		{name: "Clothing", image: "/clothing.png"}, 
+		{name: "Chemist", image: "/chemist.png"}, 
+		{name: "Stationery", image: "/stationery.png"},
+		{name: "Books", image: "/books.png"}, 
+		{name: "Furniture", image: "/furniture.png"}, 
+		{name: "Toys", image: "/toys.png"}, 
+		{name: "Grocery", image: "/groceries.png"}, 
+		{name: "Home Appliances", image: "/homeappliances.png"},
+		{name: "Sports", image: "/sports.png"}, 
+		{name: "Jewelry", image: "/jewelry.png"}, 
+		{name: "Beauty Products", image: "/beauty.png"},
+		{name: "Gardening", image: "/gardening.png"},
+		{name: "Musical Instruments", image: "/musicalinstruments.png"},
+		{name: "Office Supplies", image: "/officesupplies.png"},
+		{name: "Pet Supplies", image: "/petsupplies.png"},
+		{name: "Outdoor Equipment", image: "/outdoor.png"},
+		{name: "Kitchenware", image: "/kitchenware.png"},
+		{name: "Health & Wellness", image: "/health.png"},
+		{name: "Tools & Hardware", image: "/tools.png"},
+		{name: "Travel Accessories", image: "/travel.png"},
+		{name: "Baby Products", image: "/baby.png"},
+		{name: "Bags & Luggage", image: "/bags.png"},
 	];
 
 	useEffect(() => {
@@ -64,14 +67,22 @@ export default function Dashboard() {
 				</Typography>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
 					{categories.map((category) => (
-						<Card className="border-2 h-44" key={category.name}>
-							<CardHeader className="bg-gray-500 mb-4" floated={false}>
-								<img src={category.image} alt={`${category.name} Image`} className="object-contain h-full w-full" />
-							</CardHeader>
-							<CardBody className="">
-								<Typography className="font-bold text-lg text-center">{category.name}</Typography>
-							</CardBody>
-						</Card>
+						<Link href={`/dashboard/${category.name}`}>
+							<Card className="border-2 h-44" key={category.name}>
+								<CardHeader className="bg-gray-500 mb-4" floated={false}>
+									<img
+										src={category.image}
+										alt={`${category.name} Image`}
+										className="object-contain h-full w-full"
+									/>
+								</CardHeader>
+								<CardBody className="">
+									<Typography className="font-bold text-lg text-center">
+										{category.name}
+									</Typography>
+								</CardBody>
+							</Card>
+						</Link>
 					))}
 				</div>
 				{/* Items Section */}
@@ -85,7 +96,9 @@ export default function Dashboard() {
 								<img src="" alt="Store Image" className="object-contain" />
 							</CardHeader>
 							<CardBody className="">
-								<Typography className="font-bold text-lg">{item.name}</Typography>
+								<Typography className="font-bold text-lg">
+									{item.name}
+								</Typography>
 								<Typography className="flex items-center gap-1 text-sm font-semibold">
 									<BiSolidCategoryAlt />
 									{item.category}
