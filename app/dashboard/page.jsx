@@ -1,5 +1,6 @@
 "use client";
 import React, {useState, useEffect} from "react";
+import AddToCartButton from "../cart/AddToCartBtn";
 import {
 	Card,
 	CardHeader,
@@ -52,6 +53,7 @@ export default function Dashboard() {
 								<span className="font-semibold">In-stock</span> :{" "}
 								{item.quantity}
 							</Typography>
+							<AddToCartButton item={item} />
 						</CardBody>
 					</Card>
 				))}

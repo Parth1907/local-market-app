@@ -9,6 +9,7 @@ import {
 	Button,
 } from "@material-tailwind/react";
 import Logo from 'next/image'
+import Link from "next/link";
 
 export default function navbar() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -55,18 +56,18 @@ export default function navbar() {
 			</div>
 			<div className="flex gap-4 items-center">
 				<nav className="flex gap-4 items-center bg-blue-800 rounded-full py-3 px-6">
-					<a
+					<Link
 						href="/dashboard/topseller"
 						className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 					>
 						Top Seller
-					</a>
-					<a
+					</Link>
+					<Link
 						href="/shops"
 						className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 					>
 						Shops
-					</a>
+					</Link>
 					{isLoggedIn ? (
 						<Menu>
 							<MenuHandler>
@@ -77,9 +78,9 @@ export default function navbar() {
 							</MenuHandler>
 							<MenuList>
 								<MenuItem>
-									<a href="/profile" className="text-black no-underline">
+									<Link href="/profile" className="text-black no-underline">
 										Edit Profile
-									</a>
+									</Link>
 								</MenuItem>
 								<MenuItem>
 									<div
@@ -93,18 +94,18 @@ export default function navbar() {
 						</Menu>
 					) : (
 						<div className="flex gap-4">
-							<a
+							<Link
 								href="/register"
 								className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 							>
 								Sign Up
-							</a>
-							<a
+							</Link>
+							<Link
 								href="/login"
 								className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 							>
 								Sign In
-							</a>
+							</Link>
 						</div>
 					)}
 				</nav>

@@ -10,6 +10,7 @@ import {
 import {FaLocationDot, FaPencil, FaTrashCan, FaPlus} from "react-icons/fa6";
 import {BiSolidCategoryAlt} from "react-icons/bi";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
 // import shopImg from "./public/pexels-pixabay-264636.jpg";
 
 export default function Shops() {
@@ -70,13 +71,13 @@ export default function Shops() {
 	const [error, setError] = useState(null);
 	const [userHasShop, setUserHasShop] = useState(false);
 	const [userShop, setUserShop] = useState([{}]);
+	console.log(userShop);
 
 	useEffect(() => {
 		const fetchShops = async (e) => {
 			try {
 				const response = await fetch("http://localhost:5001/api/shop");
 				const data = await response.json();
-				console.log(data);
 				const userString = localStorage.getItem("user");
 				if (userString) {
 					const user = JSON.parse(userString);
@@ -144,7 +145,7 @@ export default function Shops() {
 			</Typography>
 			{!userHasShop && (
 				<Button className="mb-4">
-					<a href="/shops/create">Create Shop</a>
+					<Link href="/shops/create">Create Shop</Link>
 				</Button>
 			)}
 			{userHasShop && (
@@ -157,7 +158,7 @@ export default function Shops() {
 							</CardHeader>
 							<CardBody className="">
 								<Typography className="font-bold text-lg">
-									<a href={`/shops/${userShop.id}`}>{userShop.name}</a>
+									<Link href={`/shops/${userShop.id}`}>{userShop.name}</Link>
 								</Typography>
 								<Typography className="flex items-center gap-1 text-sm font-semibold">
 									<BiSolidCategoryAlt />
@@ -168,17 +169,17 @@ export default function Shops() {
 									{userShop.location}
 								</Typography>
 								<Button className="mr-4 mt-2">
-									<a href={`/shops/edit/${userShop.id}`}>
+									<Link href={`/shops/edit/${userShop.id}`}>
 										<FaPencil />
-									</a>
+									</Link>
 								</Button>
 								<Button className="mr-2 mt-2" onClick={handleDelete}>
 									<FaTrashCan />
 								</Button>
 								<Button className="mt-2">
-									<a href="/shops/create/item">
+									<Link href="/shops/create/item">
 										<FaPlus />
-									</a>
+									</Link>
 								</Button>
 							</CardBody>
 						</Card>
@@ -188,7 +189,7 @@ export default function Shops() {
 			<Typography variant="h5">All shops</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
 				{shops.map((shop) => (
-					<a href={`/shops/${shop.id}`} key={shop.id}>
+					<Link href={`/shops/${shop.id}`} key={shop.id}>
 						<Card className="flex-row border-2 h-44">
 							<CardHeader className="bg-gray-500 mb-4" floated={false}>
 								<img src="" alt="Store Image" className="object-contain" />
@@ -207,7 +208,7 @@ export default function Shops() {
 								</Typography>
 							</CardBody>
 						</Card>
-					</a>
+					</Link>
 				))}
 			</div>
 		</div>
