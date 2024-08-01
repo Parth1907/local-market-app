@@ -4,6 +4,7 @@ import {useRouter} from "next/navigation";
 import {Input} from "@material-tailwind/react";
 import Footer from "../ui/footer";
 import "../ui/style.css";
+import {toast} from "react-toastify";
 
 export default function Register() {
 	const router = useRouter();
@@ -15,9 +16,10 @@ export default function Register() {
 		e.preventDefault();
 		if (password !== confirmPassword) {
 			console.error("Passwords dont match");
+			toast.error("Passwords dont match");
 			return;
 		}
-		const response = await fetch("/api/register", {
+		const response = await fetch("http://localhost:5001/api/user/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -25,15 +27,13 @@ export default function Register() {
 			body: JSON.stringify({name, email, password}),
 		});
 		const data = await response.json();
-		// console.log(data);
+		console.log(data);
 
 		if (response.ok) {
-			localStorage.setItem("token", data.authorization.authToken);
-			localStorage.setItem("scheme", data.authorization.scheme);
-			localStorage.setItem("user", JSON.stringify(data.user));
-			window.dispatchEvent(new Event("storage"));
-			router.push("/dashboard");
+			toast.success(data.message);
+			router.push("/login");
 		} else {
+			toast.error("Login Failed: ", data.error);
 			console.error("Login failed: ", data);
 		}
 	};

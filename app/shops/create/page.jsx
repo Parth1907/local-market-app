@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
+import { toast } from "react-toastify";
 
 export default function CreateShop() {
 	const router = useRouter();
@@ -43,9 +44,11 @@ export default function CreateShop() {
 		console.log(data);
 		if (response.status === 201) {
 			console.log("Shop created successfully:", data);
+			toast.success("Shop created successfully");
 			localStorage.setItem("token",data.authorization.authToken)
             router.push("/shops");
 		} else {
+			toast.error("Failed to create shop: ",data.error);
 			console.error("Failed to create shop", data);
 		}
 	};

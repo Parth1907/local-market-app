@@ -3,6 +3,7 @@ import {useRouter} from "next/navigation";
 import React, {useState, FormEvent} from "react";
 import { Input } from "@material-tailwind/react";
 import Footer from "../ui/footer";
+import { toast } from "react-toastify";
 // import "../ui/style.css"
 
 export default function Login() {
@@ -12,7 +13,7 @@ export default function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const response = await fetch("/api/login", {
+		const response = await fetch("http://localhost:5001/api/user/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -20,15 +21,17 @@ export default function Login() {
 			body: JSON.stringify({email, password}),
 		});
 		const data = await response.json();
-		// console.log(data);
+		console.log(data);
 
 		if (response.ok) {
+			toast.success("Login succesfull")
 			localStorage.setItem("token", data.authorization.authToken);
 			localStorage.setItem("scheme", data.authorization.scheme);
 			localStorage.setItem("user", JSON.stringify(data.user));
 			window.dispatchEvent(new Event('storage'));
 			router.push("/dashboard");
 		} else {
+			toast.error("Login failed: ",data.error);
 			console.error("Login failed: ", data);
 		}
 	};

@@ -3,6 +3,7 @@ import {useRouter} from "next/navigation";
 import React, {useEffect, useState} from "react";
 import {Input} from "@material-tailwind/react";
 import Footer from "../ui/footer";
+import {toast} from "react-toastify";
 
 export default function Profile() {
 	const router = useRouter();
@@ -16,7 +17,7 @@ export default function Profile() {
 		if (userString) {
 			const user = JSON.parse(userString);
 			setEmail(user.email);
-			setName(user.name)
+			setName(user.name);
 		} else {
 			console.log("User not found");
 		}
@@ -38,8 +39,10 @@ export default function Profile() {
 		console.log(data);
 
 		if (response.ok) {
+			toast.success("Name updated succesfully");
 			router.push("/dashboard");
 		} else {
+			toast.error("Updation failed: ", data.error);
 			console.error("Updation failed: ", data);
 		}
 	};
@@ -56,15 +59,17 @@ export default function Profile() {
 					"Content-Type": "application/json",
 					Authorization: `${scheme} ${token}`,
 				},
-				body: JSON.stringify({updatedEmail:email, password}),
+				body: JSON.stringify({updatedEmail: email, password}),
 			}
 		);
 		const data = await response.json();
 		console.log(data);
 
 		if (response.ok) {
+			toast.success("Email updated succesfully");
 			router.push("/dashboard");
 		} else {
+			toast.error("Updation failed: ", data.error);
 			console.error("Updation failed: ", data);
 		}
 	};
@@ -94,8 +99,10 @@ export default function Profile() {
 		}
 
 		if (response.ok) {
+			toast.success("Password updated succesfully");
 			router.push("/dashboard");
 		} else {
+			toast.error("Updation failed: ", data.error);
 			console.error("Updation failed: ", data);
 		}
 	};

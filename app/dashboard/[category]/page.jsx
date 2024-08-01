@@ -23,7 +23,7 @@ export default function Category() {
 				const response = await fetch("http://localhost:5001/api/item");
 				const data = await response.json();
 				console.log(data);
-				const items = data.filter((item) => item.category === category);
+				const items = data.filter((item) => item.category === categoryTitle);
 				setItems(items);
 			} catch (error) {
 				console.log(error);

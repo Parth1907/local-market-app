@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {useParams, useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
+import { toast } from "react-toastify";
 export default function EditItem() {
 	const router = useRouter();
 	const {shopId, itemId} = useParams();
@@ -52,9 +53,11 @@ export default function EditItem() {
 		});
 		const data = await response.json();
 		if (response.status === 200) {
+			toast.success("Item updated successfully");
 			console.log("Item updated successfully:", data);
 			router.push(`/shops/${shopId}`);
 		} else {
+			toast.error("Failed to update item: ", data.error);
 			console.error("Failed to update item", data);
 		}
 	};

@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import {useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
+import { toast } from "react-toastify";
 
 export default function CreateItem() {
 	const router = useRouter();
@@ -27,8 +28,10 @@ export default function CreateItem() {
 		const data = await response.json();
 		if (response.status === 201) {
 			console.log("Item created successfully:", data);
+			toast.success("Item created successfully")
 			router.push("/shops");
 		} else {
+			toast.error("Failed to create item: ", data.error);
 			console.error("Failed to create item", data);
 		}
 	};
