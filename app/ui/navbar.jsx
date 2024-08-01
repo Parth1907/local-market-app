@@ -12,7 +12,7 @@ import {
 import Logo from "next/image";
 import Link from "next/link";
 import {MdMenu} from "react-icons/md"; // Importing the Menu icon from react-icons
-
+import {FaShoppingCart} from "react-icons/fa";
 export default function Navbar() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUsername] = useState("");
@@ -87,6 +87,12 @@ export default function Navbar() {
 				>
 					Shops
 				</Link>
+				<Link
+					href="/cart"
+					className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4 flex items-center gap-2"
+				>
+					<FaShoppingCart /> Cart
+				</Link>
 				{isLoggedIn ? (
 					<Menu>
 						<MenuHandler>
@@ -155,6 +161,12 @@ export default function Navbar() {
 						className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
 					>
 						Shops
+					</Link>
+					<Link
+						href="/cart"
+						className="text-white no-underline transition-colors duration-300 hover:text-[#baebff] px-4"
+					>
+						Cart
 					</Link>
 					{isLoggedIn ? (
 						<>

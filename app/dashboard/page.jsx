@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import Link from "next/link";
+import AddToCartBtn from '../cart/AddToCartBtn'
 
 export default function Dashboard() {
     const [items, setItems] = useState([]);
@@ -48,97 +49,96 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-[#203c9c] flex flex-col">
-            <div className="mx-2 mt-24 flex-grow">
-                <Typography
-                    variant="h3"
-                    className="text-center text-blue-800 mb-6"
-                >
-                    Items
-                </Typography>
-                {/* Categories Section */}
-                <Typography
-                    variant="h4"
-                    className="text-center text-blue-800 mb-6"
-                >
-                    Categories
-                </Typography>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-                    {categories.map((category) => (
-                        <Link href={`/dashboard/${category.name}`} key={category.name}>
-                            <Card className="border-2 w-45 h-70 transition-transform transform hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden">
-                                <CardHeader className="relative z-10 mb-4 bg-gradient-to-b from-white to-blue-500">
-                                    <img
-                                        src={category.image}
-                                        alt={`${category.name} Image`}
-                                        className="object-cover h-30 w-full"
-                                    />
-                                </CardHeader>
-                                <CardBody>
-                                    <Typography className="font-bold text-lg text-center">
-                                        {category.name}
-                                    </Typography>
-                                </CardBody>
-                            </Card>
-                        </Link>
-                    ))}
-                </div>
-                {/* Items Section */}
-                <Typography
-                    variant="h4"
-                    className="text-center text-white mb-6"
-                >
-                    Available Items
-                </Typography>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-                    {items.map((item) => (
-                        <Card className="flex-row border-2 w-40 h-48 transition-transform transform hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden" key={item.id}>
-                            <CardHeader className="relative z-10 mb-4 bg-gradient-to-b from-white to-blue-500">
-                                <img src="" alt="Store Image" className="object-cover h-24 w-24" />
-                            </CardHeader>
-                            <CardBody>
-                                <Typography className="font-bold text-lg">
-                                    {item.name}
-                                </Typography>
-                                <Typography className="flex items-center gap-1 text-sm font-semibold">
-                                    <BiSolidCategoryAlt />
-                                    {item.category}
-                                </Typography>
-                                <Typography className="text-sm">
-                                    <span className="font-semibold">Price</span> : ₹
-                                    <span className="line-through">{item.price}</span>{" "}
-                                    {item.finalPrice}
-                                </Typography>
-                                <Typography className="text-sm">
-                                    <span className="font-semibold">In-stock</span> :{" "}
-                                    {item.quantity}
-                                </Typography>
-                            </CardBody>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-            <style jsx>{`
-                @keyframes glow {
-                    0% {
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                    }
-                    50% {
-                        box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
-                    }
-                    100% {
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                    }
-                }
+			<div className="min-h-screen bg-gradient-to-b from-white to-[#203c9c] flex flex-col">
+				<div className="mx-2 mt-24 flex-grow">
+					<Typography variant="h3" className="text-center text-blue-800 mb-6">
+						Items
+					</Typography>
+					{/* Categories Section */}
+					<Typography variant="h4" className="text-center text-blue-800 mb-6">
+						Categories
+					</Typography>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+						{categories.map((category) => (
+							<Link href={`/dashboard/${category.name}`} key={category.name}>
+								<Card className="border-2 w-45 h-70 transition-transform transform hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden">
+									<CardHeader className="relative z-10 mb-4 bg-gradient-to-b from-white to-blue-500">
+										<img
+											src={category.image}
+											alt={`${category.name} Image`}
+											className="object-cover h-30 w-full"
+										/>
+									</CardHeader>
+									<CardBody>
+										<Typography className="font-bold text-lg text-center">
+											{category.name}
+										</Typography>
+									</CardBody>
+								</Card>
+							</Link>
+						))}
+					</div>
+					{/* Items Section */}
+					<Typography variant="h4" className="text-center text-white mb-6">
+						Available Items
+					</Typography>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+						{items.map((item) => (
+							<Card
+								className="flex-row border-2 h-48 transition-transform transform hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden"
+								key={item.id}
+							>
+								<CardHeader className="bg-gray-500 mb-4">
+									<img
+										src=""
+										alt="Store Image"
+										className="object-cover h-24 w-24"
+									/>
+								</CardHeader>
+								<CardBody>
+									<Typography className="font-bold text-lg">
+										{item.name}
+									</Typography>
+									<Typography className="flex items-center gap-1 text-sm font-semibold">
+										<BiSolidCategoryAlt />
+										{item.category}
+									</Typography>
+									<Typography className="text-sm">
+										<span className="font-semibold">Price</span> : ₹
+										<span className="line-through">{item.price}</span>{" "}
+										{item.finalPrice}
+									</Typography>
+									<Typography className="text-sm mb-2">
+										<span className="font-semibold">In-stock</span> :{" "}
+										{item.quantity}
+									</Typography>
+                                    <AddToCartBtn />
+								</CardBody>
+							</Card>
+						))}
+					</div>
+				</div>
+				<style jsx>{`
+					@keyframes glow {
+						0% {
+							box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+						}
+						50% {
+							box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+						}
+						100% {
+							box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+						}
+					}
 
-                .glow-on-hover {
-                    transition: box-shadow 0.3s ease-in-out;
-                }
+					.glow-on-hover {
+						transition: box-shadow 0.3s ease-in-out;
+					}
 
-                .glow-on-hover:hover {
-                    animation: glow 1s infinite;
-                }
-            `}</style>
-        </div>
-    );
+					.glow-on-hover:hover {
+						animation: glow 1s infinite;
+					}
+				`}</style>
+			</div>
+		);
 }

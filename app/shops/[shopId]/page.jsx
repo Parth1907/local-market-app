@@ -12,9 +12,9 @@ import {FaPencil, FaTrashCan} from "react-icons/fa6";
 import {BiSolidCategoryAlt} from "react-icons/bi";
 import {useParams, useRouter} from "next/navigation";
 import Link from "next/link";
-
+import AddToCartBtn from "../../cart/AddToCartBtn";
 export default function Items() {
-	const router= useRouter();
+	const router = useRouter();
 	const [items, setItems] = useState([]);
 	const {shopId} = useParams();
 	const [user, setUser] = useState({});
@@ -104,6 +104,7 @@ export default function Items() {
 								<span className="font-semibold">In-stock</span> :{" "}
 								{item.quantity}
 							</Typography>
+							{item.shopId !== user.shopId && <AddToCartBtn />}
 							{item.shopId === user.shopId && (
 								<div className="">
 									<Button className="mr-4 mt-2">
