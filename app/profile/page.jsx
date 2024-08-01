@@ -107,10 +107,9 @@ export default function Profile() {
 		}
 	};
 	return (
-		<>
+		<div className="w-full flex justify-center mt-4">
 			<div
 				className="bg-white rounded-lg p-[40px] w-full max-w-[800px] my-6"
-				style={{boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)"}}
 			>
 				<h1 className="text-2xl font-bold text-center mb-6">Edit Profile</h1>
 				<form className="flex flex-col gap-4" onSubmit={handleName}>
@@ -182,6 +181,6 @@ export default function Profile() {
 				</form>
 			</div>
 			<Footer />
-		</>
+		</div>
 	);
 }
