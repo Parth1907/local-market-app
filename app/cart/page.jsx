@@ -11,44 +11,6 @@ import {BiSolidCategoryAlt} from "react-icons/bi";
 import Footer from "../ui/footer";
 
 export default function Cart() {
-	// const itemSampleData = [
-	// 	{
-	// 		name: "Organic Apples",
-	// 		category: "Grocery",
-	// 		price: 249.99,
-	// 		quantity: 5,
-	// 		discount: 5,
-	// 	},
-	// 	{
-	// 		name: "Cotton T-Shirt",
-	// 		category: "Clothing",
-	// 		price: 159.99,
-	// 		quantity: 1,
-	// 		discount: 10,
-	// 	},
-	// 	{
-	// 		name: "Bluetooth Earphones",
-	// 		category: "Electronics",
-	// 		price: 4999.99,
-	// 		quantity: 1,
-	// 		discount: 50,
-	// 	},
-	// 	{
-	// 		name: "The Great Gatsby",
-	// 		category: "Books",
-	// 		price: 300,
-	// 		quantity: 1,
-	// 		discount: 25,
-	// 	},
-	// 	{
-	// 		name: "Coffee Table",
-	// 		category: "Furniture",
-	// 		price: 1499.99,
-	// 		quantity: 1,
-	// 		discount: 10,
-	// 	},
-	// ];
-
 	const itemSampleData = [
 		{
 			name: "Organic Apples",
