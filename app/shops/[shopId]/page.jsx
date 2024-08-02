@@ -85,9 +85,16 @@ export default function Items() {
 			</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
 				{items.map((item) => (
-					<Card className="flex-row border-2 h-44" key={item.id}>
-						<CardHeader className="bg-gray-500 mb-4" floated={false}>
-							<img src="" alt="Store Image" className="object-contain" />
+					<Card
+						className="transition-transform transform hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden"
+						key={item.id}
+					>
+						<CardHeader className="flex justify-center my-4" floated={false}>
+							<img
+								src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
+								alt="Store Image"
+								className="object-contain h-44"
+							/>
 						</CardHeader>
 						<CardBody className="">
 							<Typography className="font-bold text-lg">{item.name}</Typography>

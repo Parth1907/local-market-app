@@ -14,55 +14,62 @@ import Link from "next/link";
 // import shopImg from "./public/pexels-pixabay-264636.jpg";
 
 export default function Shops() {
+
 	const shopSampleData = [
 		{
-			name: "Fresh Mart",
-			location: "456 Oak Avenue, Townsville, XYZ",
+			name: "Evergreen Mart",
+			location: "123 Pine Avenue, Townsville, XYZ",
 			category: "Grocery",
 			geoLocation: {
 				type: "Point",
 				coordinates: [34.123456, -78.987654],
 			},
+			imageUrl:
+				"https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzA2fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080",
 		},
-
 		{
-			name: "Fashionista",
-			location: "789 Elm Street, Fashion City, PQR",
-			category: "Clothing",
-			geoLocation: {
-				type: "Point",
-				coordinates: [56.789012, -23.456789],
-			},
-		},
-
-		{
-			name: "Tech Hub",
-			location: "101 Tech Avenue, Silicon Valley, DEF",
+			name: "Tech Haven",
+			location: "789 Maple Street, Technopolis, ABC",
 			category: "Electronics",
 			geoLocation: {
 				type: "Point",
-				coordinates: [78.901234, -12.345678],
+				coordinates: [40.123456, -74.987654],
 			},
+			imageUrl:
+				"https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzA2fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080",
 		},
-
 		{
-			name: "Bookworm Books",
-			location: "222 Library Lane, Reading Town, GHI",
-			category: "Books",
+			name: "Style Central",
+			location: "123 Elm Road, Fashion City, DEF",
+			category: "Clothing",
 			geoLocation: {
 				type: "Point",
-				coordinates: [90.123456, -45.678901],
+				coordinates: [37.123456, -80.987654],
 			},
+			imageUrl:
+				"https://images.unsplash.com/photo-1512436991641-6745cdb1723f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzA2fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080",
 		},
-
 		{
-			name: "Home Comfort",
-			location: "333 Main Boulevard, Furnishville, JKL",
-			category: "Furniture",
+			name: "Book Nook",
+			location: "321 Pine Lane, Literature Town, GHI",
+			category: "Bookstore",
 			geoLocation: {
 				type: "Point",
-				coordinates: [0.123456, 0.987654],
+				coordinates: [38.123456, -76.987654],
 			},
+			imageUrl:
+				"https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzA2fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080",
+		},
+		{
+			name: "Pet Paradise",
+			location: "654 Cedar Boulevard, Petville, JKL",
+			category: "Pet Store",
+			geoLocation: {
+				type: "Point",
+				coordinates: [39.123456, -77.987654],
+			},
+			imageUrl:
+				"https://images.unsplash.com/photo-1574158622682-e40e69881006?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzA2fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080",
 		},
 	];
 
@@ -188,11 +195,44 @@ export default function Shops() {
 			)}
 			<Typography variant="h5">All shops</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+				{shopSampleData.map((shop) => (
+					<Link href={`/shops/${shop.id}`} key={shop.id}>
+						<Card className="">
+							<CardHeader className="flex items-center mb-4 h-44" floated={false}>
+								<img
+									src={shop.imageUrl}
+									alt="Store Image"
+									className="object-contain"
+								/>
+							</CardHeader>
+							<CardBody className="">
+								<Typography className="font-bold text-lg">
+									{shop.name}
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm font-semibold">
+									<BiSolidCategoryAlt />
+									{shop.category}
+								</Typography>
+								<Typography className="flex items-center gap-1 text-sm">
+									<FaLocationDot />
+									{shop.location}
+								</Typography>
+							</CardBody>
+						</Card>
+					</Link>
+				))}
 				{shops.map((shop) => (
 					<Link href={`/shops/${shop.id}`} key={shop.id}>
-						<Card className="flex-row border-2 h-44">
-							<CardHeader className="bg-gray-500 mb-4" floated={false}>
-								<img src="" alt="Store Image" className="object-contain" />
+						<Card className="">
+							<CardHeader className="flex items-center mb-4" floated={false}>
+								<img
+									src={
+										shop.imageUrl ||
+										"https://dis-prod.assetful.loblaw.ca/content/dam/loblaw-companies-limited/creative-assets/freshmart/ogimage-freshmart.jpg"
+									}
+									alt="Store Image"
+									className="object-contain"
+								/>
 							</CardHeader>
 							<CardBody className="">
 								<Typography className="font-bold text-lg">
