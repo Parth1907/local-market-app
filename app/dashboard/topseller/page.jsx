@@ -99,7 +99,7 @@ export default function Topseller() {
 								floated={false}
 								shadow={false}
 							>
-								<Image
+								<img
 									src={item.imageUrl}
 									alt="Store Image"
 									className="object-contain h-44"

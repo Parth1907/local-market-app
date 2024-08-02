@@ -2,7 +2,8 @@
 import React, {useState} from "react";
 import {useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
+import BASE_URL from "@/config";
 
 export default function CreateItem() {
 	const router = useRouter();
@@ -17,7 +18,7 @@ export default function CreateItem() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch("http://localhost:5001/api/item", {
+		const response = await fetch(`${BASE_URL}/api/item`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -28,7 +29,7 @@ export default function CreateItem() {
 		const data = await response.json();
 		if (response.status === 201) {
 			console.log("Item created successfully:", data);
-			toast.success("Item created successfully")
+			toast.success("Item created successfully");
 			router.push("/shops");
 		} else {
 			toast.error("Failed to create item: ", data.error);
@@ -39,10 +40,7 @@ export default function CreateItem() {
 	return (
 		<div className="w-full flex justify-center mt-4">
 			<Card color="transparent" shadow={false}>
-				<Typography
-					variant="h4"
-					className="text-center mt-8 text-blue-800"
-				>
+				<Typography variant="h4" className="text-center mt-8 text-blue-800">
 					Create Item
 				</Typography>
 				<form

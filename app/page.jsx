@@ -162,7 +162,7 @@ export default function Page() {
                         <HomeFooter className="fade-in-delay-10"/>
                     </div>
                     <div className="image-content">
-                        <Image src="/glob.png" alt="Glob" />
+                        <img src="/glob.png" alt="Glob" />
                     </div>
                 </div>
             </div>

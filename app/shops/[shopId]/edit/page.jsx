@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from "react";
 import {useParams, useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
+import BASE_URL from "@/config";
 
 export default function EditShop() {
 	const router = useRouter();
@@ -15,9 +16,7 @@ export default function EditShop() {
 	useEffect(() => {
 		const fetchShopDetails = async (e) => {
 			try {
-				const response = await fetch(
-					`/api/shop/${shopId}`
-				);
+				const response = await fetch(`/api/shop/${shopId}`);
 				const data = await response.json();
 				setName(data.name);
 				setLocation(data.location);
@@ -36,7 +35,7 @@ export default function EditShop() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch(`/api/shop/${shopId}`, {
+		const response = await fetch(`${BASE_URL}/api/shop/${shopId}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

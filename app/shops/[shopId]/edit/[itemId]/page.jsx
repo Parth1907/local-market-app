@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import {useParams, useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
 import { toast } from "react-toastify";
+import BASE_URL from "@/config";
+
 export default function EditItem() {
 	const router = useRouter();
 	const {shopId, itemId} = useParams();
@@ -18,7 +20,7 @@ export default function EditItem() {
 			const token = localStorage.getItem("token");
 			try {
 				const response = await fetch(
-					`/api/item/${itemId}`,
+					`${BASE_URL}/api/item/${itemId}`,
 					{
 						headers: {
 							"Content-Type": "application/json",
@@ -43,7 +45,7 @@ export default function EditItem() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch(`/api/item/${itemId}`, {
+		const response = await fetch(`${BASE_URL}/api/item/${itemId}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

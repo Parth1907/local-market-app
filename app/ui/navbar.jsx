@@ -57,7 +57,7 @@ export default function Navbar() {
 		<div className="w-full py-4 px-4 lg:px-16 flex justify-between items-center transition-top duration-300 box-border bg-transparent fixed top-0 left-0 right-0 z-50">
 			<div className="text-2xl font-bold">
 				<a href="/dashboard">
-					<Image src="logo.png" alt="Logo" className="h-20 w-auto" />
+					<img src="/logo.png" alt="Logo" className="h-20 w-auto" />
 				</a>
 			</div>
 			<div className="flex lg:hidden">

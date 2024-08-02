@@ -14,6 +14,8 @@ import {useParams, useRouter} from "next/navigation";
 import Link from "next/link";
 import AddToCartBtn from "../../cart/AddToCartBtn";
 import Image from "next/image";
+import BASE_URL from "@/config";
+
 export default function Items() {
 	const router = useRouter();
 	const [items, setItems] = useState([]);
@@ -31,7 +33,7 @@ export default function Items() {
 	useEffect(() => {
 		const fetchItems = async (e) => {
 			try {
-				const response = await fetch("/api/item");
+				const response = await fetch(`${BASE_URL}/api/item`);
 				const data = await response.json();
 				console.log(data);
 				const items = data.filter((item) => item.shopId === shopId);
@@ -51,7 +53,7 @@ export default function Items() {
 		const token = localStorage.getItem("token");
 
 		try {
-			const response = await fetch(`/api/item/${itemId}`, {
+			const response = await fetch(`${BASE_URL}/api/item/${itemId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
@@ -91,7 +93,7 @@ export default function Items() {
 						key={item.id}
 					>
 						<CardHeader className="flex justify-center my-4" floated={false}>
-							<Image
+							<img
 								src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
 								alt="Store Image"
 								className="object-contain h-44"

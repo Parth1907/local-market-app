@@ -12,10 +12,9 @@ import {BiSolidCategoryAlt} from "react-icons/bi";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-// import shopImg from "./public/pexels-pixabay-264636.jpg";
+import BASE_URL from "@/config";
 
 export default function Shops() {
-
 	const shopSampleData = [
 		{
 			name: "Evergreen Mart",
@@ -84,7 +83,7 @@ export default function Shops() {
 	useEffect(() => {
 		const fetchShops = async (e) => {
 			try {
-				const response = await fetch("/api/shop");
+				const response = await fetch(`${BASE_URL}/api/shop`);
 				const data = await response.json();
 				const userString = localStorage.getItem("user");
 				if (userString) {
@@ -115,16 +114,13 @@ export default function Shops() {
 		const token = localStorage.getItem("token");
 
 		try {
-			const response = await fetch(
-				`/api/shop/${userShop.id}`,
-				{
-					method: "DELETE",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `${scheme} ${token}`,
-					},
-				}
-			);
+			const response = await fetch(`${BASE_URL}/api/shop/${userShop.id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${scheme} ${token}`,
+				},
+			});
 
 			let data = null;
 			if (response.status !== 204) {
@@ -162,7 +158,7 @@ export default function Shops() {
 					<div className="mb-4">
 						<Card className="flex-row border-2 md:w-[400px]">
 							<CardHeader className="bg-gray-500 mb-4" floated={false}>
-								<Image src="" alt="Store Image" className="object-contain" />
+								<img src="" alt="Store Image" className="object-contain" />
 							</CardHeader>
 							<CardBody className="">
 								<Typography className="font-bold text-lg">
@@ -199,8 +195,11 @@ export default function Shops() {
 				{shopSampleData.map((shop) => (
 					<Link href={`/shops/${shop.id}`} key={shop.id}>
 						<Card className="">
-							<CardHeader className="flex items-center mb-4 h-44" floated={false}>
-								<Image
+							<CardHeader
+								className="flex items-center mb-4 h-44"
+								floated={false}
+							>
+								<img
 									src={shop.imageUrl}
 									alt="Store Image"
 									className="object-contain"
@@ -226,7 +225,7 @@ export default function Shops() {
 					<Link href={`/shops/${shop.id}`} key={shop.id}>
 						<Card className="">
 							<CardHeader className="flex items-center mb-4" floated={false}>
-								<Image
+								<img
 									src={
 										shop.imageUrl ||
 										"https://dis-prod.assetful.loblaw.ca/content/dam/loblaw-companies-limited/creative-assets/freshmart/ogimage-freshmart.jpg"

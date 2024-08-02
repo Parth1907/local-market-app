@@ -84,7 +84,7 @@ export default function Cart() {
 					{itemSampleData.map((item) => (
 						<Card className="mb-4" key={item.id}>
 							<CardHeader className="mb-4 flex justify-center" floated={false} shadow={false}>
-								<Image
+								<img
 									src={item.imageUrl}
 									alt="Store Image"
 									className="object-contain h-44 "

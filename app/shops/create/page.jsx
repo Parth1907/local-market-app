@@ -2,7 +2,8 @@
 import React, {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {Card, Input, Button, Typography} from "@material-tailwind/react";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
+import BASE_URL from "@/config";
 
 export default function CreateShop() {
 	const router = useRouter();
@@ -32,7 +33,7 @@ export default function CreateShop() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch("http://localhost:5001/api/shop", {
+		const response = await fetch(`${BASE_URL}/api/shop`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -45,10 +46,10 @@ export default function CreateShop() {
 		if (response.status === 201) {
 			console.log("Shop created successfully:", data);
 			toast.success("Shop created successfully");
-			localStorage.setItem("token",data.authorization.authToken)
-            router.push("/shops");
+			localStorage.setItem("token", data.authorization.authToken);
+			router.push("/shops");
 		} else {
-			toast.error("Failed to create shop: ",data.error);
+			toast.error("Failed to create shop: ", data.error);
 			console.error("Failed to create shop", data);
 		}
 	};

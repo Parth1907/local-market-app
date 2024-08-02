@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {Input} from "@material-tailwind/react";
 import Footer from "../ui/footer";
 import {toast} from "react-toastify";
+import BASE_URL from "@/config";
 
 export default function Profile() {
 	const router = useRouter();
@@ -27,7 +28,7 @@ export default function Profile() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch("/api/user", {
+		const response = await fetch(`${BASE_URL}/api/user`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -52,7 +53,7 @@ export default function Profile() {
 		const token = localStorage.getItem("token");
 		console.log(email);
 		const response = await fetch(
-			"http://localhost:5001/api/user/update-email",
+			`${BASE_URL}/api/user/update-email`,
 			{
 				method: "PUT",
 				headers: {
@@ -79,7 +80,7 @@ export default function Profile() {
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
 		const response = await fetch(
-			"http://localhost:5001/api/user/update-password",
+			`${BASE_URL}/api/user/update-password`,
 			{
 				method: "PUT",
 				headers: {

@@ -5,6 +5,7 @@ import {Input} from "@material-tailwind/react";
 import Footer from "../ui/footer";
 import "../ui/style.css";
 import {toast} from "react-toastify";
+import BASE_URL from "@/config";
 
 export default function Register() {
 	const router = useRouter();
@@ -19,7 +20,7 @@ export default function Register() {
 			toast.error("Passwords dont match");
 			return;
 		}
-		const response = await fetch("/api/user/signup", {
+		const response = await fetch(`${BASE_URL}/api/user/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

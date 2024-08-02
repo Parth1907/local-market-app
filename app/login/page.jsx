@@ -4,6 +4,7 @@ import React, {useState, FormEvent} from "react";
 import { Input } from "@material-tailwind/react";
 import Footer from "../ui/footer";
 import { toast } from "react-toastify";
+import BASE_URL from "@/config";
 // import "../ui/style.css"
 
 export default function Login() {
@@ -13,7 +14,7 @@ export default function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const response = await fetch("/api/user/login", {
+		const response = await fetch(`${BASE_URL}/api/user/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
