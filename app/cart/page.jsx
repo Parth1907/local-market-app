@@ -96,16 +96,31 @@ export default function Cart() {
 		},
 	];
 
+	const calculateTotalPrice = () =>
+		itemSampleData.reduce(
+			(total, item) => total + item.price * item.quantity,
+			0
+		);
+	const calculateTotalDiscount = () =>
+		itemSampleData.reduce(
+			(total, item) =>
+				total + (item.price * item.discount * item.quantity) / 100,
+			0
+		);
+	const deliveryFee = 50;
+	const totalAmount =
+		calculateTotalPrice() - calculateTotalDiscount() + deliveryFee;
+
 	return (
 		<div className="w-full flex flex-col items-center mt-24 gap-4">
 			<Typography variant="h3" color="blue">
 				Shopping Cart
 			</Typography>
-			<div className="w-3/4">
-				<div className="flex flex-col w-full items-start ">
+			<div className="w-3/4 flex">
+				<div className="flex flex-col w-3/4 items-start border-2 pl-4 pt-4">
 					{itemSampleData.map((item) => (
 						<Card className="mb-4" key={item.id}>
-							<CardHeader className="mb-4 flex justify-center" floated={false}>
+							<CardHeader className="mb-4 flex justify-center" floated={false} shadow={false}>
 								<img
 									src={item.imageUrl}
 									alt="Store Image"
@@ -134,13 +149,36 @@ export default function Cart() {
 					))}
 				</div>
 
-				<div className="flex justify-end">
-					<Button className="mb-14" color="blue">
-						Proceed to Buy
-					</Button>
-				</div>
+				<Card className="w-1/4 h-fit ml-4 p-4 gap-4 border-2">
+					<Typography variant="h5" className="font-bold mb-4">
+						Price Details
+					</Typography>
+					<Typography className="text-sm flex justify-between ">
+						<span className="font-semibold">Total Price</span> ₹
+						{calculateTotalPrice().toFixed(2)}
+					</Typography>
+					<Typography className="text-sm flex justify-between">
+						<span className="font-semibold">Total Discount</span> ₹
+						{calculateTotalDiscount().toFixed(2)}
+					</Typography>
+					<Typography className="text-sm flex justify-between">
+						<span className="font-semibold">Delivery Fee</span> ₹
+						{deliveryFee.toFixed(2)}
+					</Typography>
+					<hr className="border-2"/>
+					<Typography className="text-sm font-semibold mt-2 flex justify-between">
+						<span className="font-semibold">Total Amount</span> ₹
+						{totalAmount.toFixed(2)}
+					</Typography>
+				</Card>
 			</div>
-			<Footer></Footer>
+
+			<div className="flex justify-end w-3/4 mt-4">
+				<Button className="mb-14" color="blue">
+					Proceed to Buy
+				</Button>
+			</div>
+			<Footer />
 		</div>
 	);
 }
