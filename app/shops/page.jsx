@@ -11,6 +11,7 @@ import {FaLocationDot, FaPencil, FaTrashCan, FaPlus} from "react-icons/fa6";
 import {BiSolidCategoryAlt} from "react-icons/bi";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 // import shopImg from "./public/pexels-pixabay-264636.jpg";
 
 export default function Shops() {
@@ -83,7 +84,7 @@ export default function Shops() {
 	useEffect(() => {
 		const fetchShops = async (e) => {
 			try {
-				const response = await fetch("http://localhost:5001/api/shop");
+				const response = await fetch("/api/shop");
 				const data = await response.json();
 				const userString = localStorage.getItem("user");
 				if (userString) {
@@ -115,7 +116,7 @@ export default function Shops() {
 
 		try {
 			const response = await fetch(
-				`http://localhost:5001/api/shop/${userShop.id}`,
+				`/api/shop/${userShop.id}`,
 				{
 					method: "DELETE",
 					headers: {
@@ -161,7 +162,7 @@ export default function Shops() {
 					<div className="mb-4">
 						<Card className="flex-row border-2 md:w-[400px]">
 							<CardHeader className="bg-gray-500 mb-4" floated={false}>
-								<img src="" alt="Store Image" className="object-contain" />
+								<Image src="" alt="Store Image" className="object-contain" />
 							</CardHeader>
 							<CardBody className="">
 								<Typography className="font-bold text-lg">
@@ -199,7 +200,7 @@ export default function Shops() {
 					<Link href={`/shops/${shop.id}`} key={shop.id}>
 						<Card className="">
 							<CardHeader className="flex items-center mb-4 h-44" floated={false}>
-								<img
+								<Image
 									src={shop.imageUrl}
 									alt="Store Image"
 									className="object-contain"
@@ -225,7 +226,7 @@ export default function Shops() {
 					<Link href={`/shops/${shop.id}`} key={shop.id}>
 						<Card className="">
 							<CardHeader className="flex items-center mb-4" floated={false}>
-								<img
+								<Image
 									src={
 										shop.imageUrl ||
 										"https://dis-prod.assetful.loblaw.ca/content/dam/loblaw-companies-limited/creative-assets/freshmart/ogimage-freshmart.jpg"

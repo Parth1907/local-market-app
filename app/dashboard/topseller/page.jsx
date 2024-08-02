@@ -10,6 +10,7 @@ import {
 } from "@material-tailwind/react";
 import AddToCartBtn from "@/app/cart/AddToCartBtn";
 import {BiSolidCategoryAlt} from "react-icons/bi";
+import Image from "next/image";
 
 export default function Topseller() {
 	// const itemSampleData = [
@@ -81,7 +82,6 @@ export default function Topseller() {
 		},
 	];
 
-	
 	return (
 		<div>
 			<div className="w-3/4 ml-4">
@@ -94,8 +94,16 @@ export default function Topseller() {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
 					{itemSampleData.map((item) => (
 						<Card className="mb-4" key={item.id}>
-							<CardHeader className="flex justify-center mb-4" floated={false} shadow={false}>
-								<img src={item.imageUrl} alt="Store Image" className="object-contain h-44" />
+							<CardHeader
+								className="flex justify-center mb-4"
+								floated={false}
+								shadow={false}
+							>
+								<Image
+									src={item.imageUrl}
+									alt="Store Image"
+									className="object-contain h-44"
+								/>
 							</CardHeader>
 							<CardBody className="">
 								<Typography className="font-bold text-lg">
@@ -114,7 +122,7 @@ export default function Topseller() {
 									<span className="font-semibold">Quantity</span> :{" "}
 									<input type="number" value={item.quantity} />
 								</Typography>
-                <AddToCartBtn />
+								<AddToCartBtn />
 							</CardBody>
 						</Card>
 					))}

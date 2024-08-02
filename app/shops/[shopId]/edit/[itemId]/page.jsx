@@ -18,7 +18,7 @@ export default function EditItem() {
 			const token = localStorage.getItem("token");
 			try {
 				const response = await fetch(
-					`http://localhost:5001/api/item/${itemId}`,
+					`/api/item/${itemId}`,
 					{
 						headers: {
 							"Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function EditItem() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch(`http://localhost:5001/api/item/${itemId}`, {
+		const response = await fetch(`/api/item/${itemId}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

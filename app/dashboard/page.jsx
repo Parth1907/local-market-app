@@ -4,6 +4,7 @@ import {Card, CardHeader, CardBody, Typography} from "@material-tailwind/react";
 import {BiSolidCategoryAlt} from "react-icons/bi";
 import Link from "next/link";
 import AddToCartBtn from "../cart/AddToCartBtn";
+import Image from "next/image";
 
 export default function Dashboard() {
 	const [items, setItems] = useState([]);
@@ -155,7 +156,7 @@ export default function Dashboard() {
 	useEffect(() => {
 		const fetchItems = async () => {
 			try {
-				const response = await fetch("http://localhost:5001/api/item");
+				const response = await fetch("/api/item");
 				const data = await response.json();
 				setItems(data);
 			} catch (error) {
@@ -181,7 +182,7 @@ export default function Dashboard() {
 						<Link href={`/dashboard/${category.name}`} key={category.name}>
 							<Card className="border-2 w-45 h-70 transition-transform transform hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden">
 								<CardHeader className="relative z-10 mb-4 bg-gradient-to-b from-white to-blue-500">
-									<img
+									<Image
 										src={category.image}
 										alt={`${category.name} Image`}
 										className="object-cover h-30 w-full"
@@ -207,7 +208,7 @@ export default function Dashboard() {
 							key={item.id}
 						>
 							<CardHeader className="flex justify-center my-4">
-								<img
+								<Image
 									src={item.images[0]}
 									alt="Store Image"
 									className="object-contain h-44"
@@ -242,7 +243,7 @@ export default function Dashboard() {
 							key={item.id}
 						>
 							<CardHeader className="flex justify-center my-4">
-								<img
+								<Image
 									src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
 									alt="Store Image"
 									className="object-contain h-44"

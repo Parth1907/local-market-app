@@ -9,6 +9,7 @@ import {
 } from "@material-tailwind/react";
 import {BiSolidCategoryAlt} from "react-icons/bi";
 import Footer from "../ui/footer";
+import Image from "next/image";
 
 export default function Cart() {
 	const itemSampleData = [
@@ -83,7 +84,7 @@ export default function Cart() {
 					{itemSampleData.map((item) => (
 						<Card className="mb-4" key={item.id}>
 							<CardHeader className="mb-4 flex justify-center" floated={false} shadow={false}>
-								<img
+								<Image
 									src={item.imageUrl}
 									alt="Store Image"
 									className="object-contain h-44 "

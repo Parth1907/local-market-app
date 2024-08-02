@@ -13,7 +13,7 @@ export default function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const response = await fetch("http://localhost:5001/api/user/login", {
+		const response = await fetch("/api/user/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function Login() {
 							Sign In
 						</button>
 						<p className="mt-5 text-center">
-							Don't have an account yet?
+							Dont have an account yet?
 							<a
 								href="/register"
 								className="text-[#00379c] no-underline hover:underline"

@@ -27,7 +27,7 @@ export default function Profile() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch("http://localhost:5001/api/user", {
+		const response = await fetch("/api/user", {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

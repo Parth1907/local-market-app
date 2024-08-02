@@ -2,6 +2,7 @@
 
 import React from "react";
 import HomeFooter from "./ui/HomeFooter";
+import Image from "next/image";
 
 export default function Page() {
     return (
@@ -161,7 +162,7 @@ export default function Page() {
                         <HomeFooter className="fade-in-delay-10"/>
                     </div>
                     <div className="image-content">
-                        <img src="/glob.png" alt="Glob" />
+                        <Image src="/glob.png" alt="Glob" />
                     </div>
                 </div>
             </div>

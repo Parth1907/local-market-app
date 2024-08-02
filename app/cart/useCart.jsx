@@ -4,13 +4,13 @@ import {useState} from "react";
 
 export const useCart = () => {
 	const [cart, setCart] = useState(null);
-	const scheme = localStorage.getItem("scheme");
-	const token = localStorage.getItem("token");
 
 	useEffect(() => {
 		const fetchCart = async () => {
+			const scheme = localStorage.getItem("scheme");
+			const token = localStorage.getItem("token");
 			try {
-				const response = await fetch("http://localhost:5001/api/cart", {
+				const response = await fetch("/api/cart", {
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: `${scheme} ${token}`,
@@ -28,8 +28,10 @@ export const useCart = () => {
 	}, []);
 
 	const addToCart = async (item) => {
+		const scheme = localStorage.getItem("scheme");
+		const token = localStorage.getItem("token");
 		try {
-			const response = await fetch("http://localhost:5001/api/cart", {
+			const response = await fetch("/api/cart", {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -47,8 +49,10 @@ export const useCart = () => {
 	};
 
 	const deleteCart = async () => {
+		const scheme = localStorage.getItem("scheme");
+		const token = localStorage.getItem("token");
 		try {
-			await fetch("http://localhost:5001/api/cart", {
+			await fetch("/api/cart", {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",

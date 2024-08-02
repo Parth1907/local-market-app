@@ -11,6 +11,7 @@ import {
 	Button,
 } from "@material-tailwind/react";
 import {BiSolidCategoryAlt} from "react-icons/bi";
+import Image from "next/image";
 
 export default function Category() {
 	const [items, setItems] = useState([]);
@@ -19,8 +20,10 @@ export default function Category() {
 	categoryTitle = categoryTitle.join(" ");
 	useEffect(() => {
 		const fetchItems = async (e) => {
+			let categoryTitle = category.split("%20");
+			categoryTitle = categoryTitle.join(" ");
 			try {
-				const response = await fetch("http://localhost:5001/api/item");
+				const response = await fetch("/api/item");
 				const data = await response.json();
 				console.log(data);
 				const items = data.filter((item) => item.category === categoryTitle);
@@ -38,9 +41,13 @@ export default function Category() {
 			</Typography>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 mx-4">
 				{items.map((item) => (
-					<Card className="flex-row border-2 h-44" key={item.id}>
-						<CardHeader className="bg-gray-500 mb-4" floated={false}>
-							<img src="" alt="Store Image" className="object-contain" />
+					<Card className="" key={item.id}>
+						<CardHeader className="flex justify-center my-4" floated={false}>
+							<Image
+								src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
+								alt="Item Image"
+								className="object-contain h-44"
+							/>
 						</CardHeader>
 						<CardBody className="">
 							<Typography className="font-bold text-lg">{item.name}</Typography>

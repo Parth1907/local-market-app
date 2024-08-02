@@ -13,6 +13,7 @@ import Logo from "next/image";
 import Link from "next/link";
 import {MdMenu} from "react-icons/md"; // Importing the Menu icon from react-icons
 import {FaShoppingCart} from "react-icons/fa";
+import Image from "next/image";
 export default function Navbar() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUsername] = useState("");
@@ -56,7 +57,7 @@ export default function Navbar() {
 		<div className="w-full py-4 px-4 lg:px-16 flex justify-between items-center transition-top duration-300 box-border bg-transparent fixed top-0 left-0 right-0 z-50">
 			<div className="text-2xl font-bold">
 				<a href="/dashboard">
-					<img src="logo.png" alt="Logo" className="h-20 w-auto" />
+					<Image src="logo.png" alt="Logo" className="h-20 w-auto" />
 				</a>
 			</div>
 			<div className="flex lg:hidden">

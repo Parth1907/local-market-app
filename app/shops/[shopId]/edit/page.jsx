@@ -16,7 +16,7 @@ export default function EditShop() {
 		const fetchShopDetails = async (e) => {
 			try {
 				const response = await fetch(
-					`http://localhost:5001/api/shop/${shopId}`
+					`/api/shop/${shopId}`
 				);
 				const data = await response.json();
 				setName(data.name);
@@ -36,7 +36,7 @@ export default function EditShop() {
 		e.preventDefault();
 		const scheme = localStorage.getItem("scheme");
 		const token = localStorage.getItem("token");
-		const response = await fetch(`http://localhost:5001/api/shop/${shopId}`, {
+		const response = await fetch(`/api/shop/${shopId}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

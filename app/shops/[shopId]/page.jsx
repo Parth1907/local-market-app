@@ -13,6 +13,7 @@ import {BiSolidCategoryAlt} from "react-icons/bi";
 import {useParams, useRouter} from "next/navigation";
 import Link from "next/link";
 import AddToCartBtn from "../../cart/AddToCartBtn";
+import Image from "next/image";
 export default function Items() {
 	const router = useRouter();
 	const [items, setItems] = useState([]);
@@ -30,7 +31,7 @@ export default function Items() {
 	useEffect(() => {
 		const fetchItems = async (e) => {
 			try {
-				const response = await fetch("http://localhost:5001/api/item");
+				const response = await fetch("/api/item");
 				const data = await response.json();
 				console.log(data);
 				const items = data.filter((item) => item.shopId === shopId);
@@ -50,7 +51,7 @@ export default function Items() {
 		const token = localStorage.getItem("token");
 
 		try {
-			const response = await fetch(`http://localhost:5001/api/item/${itemId}`, {
+			const response = await fetch(`/api/item/${itemId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
@@ -90,7 +91,7 @@ export default function Items() {
 						key={item.id}
 					>
 						<CardHeader className="flex justify-center my-4" floated={false}>
-							<img
+							<Image
 								src="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png"
 								alt="Store Image"
 								className="object-contain h-44"
